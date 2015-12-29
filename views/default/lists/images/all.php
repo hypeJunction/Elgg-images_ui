@@ -8,7 +8,7 @@ $filter = elgg_extract('filter', $vars);
 
 $options = [
 	'types' => 'object',
-	'subtypes' => $subtype,
+	'subtypes' => $subtypes,
 	'owner_guids' => $owner_guids ? : ELGG_ENTITIES_ANY_VALUE,
 	'container_guids' => $container_guids ? : ELGG_ENTITIES_ANY_VALUE,
 	'metadata_name_value_pairs' => [
