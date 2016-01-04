@@ -32,6 +32,8 @@ if (elgg_is_sticky_form('images/upload')) {
 		$vars = array_merge($vars, $sticky_values);
 	}
 }
+
+$vars['filter_context'] = 'index';
 $vars['entity'] = $entity;
 
 $content = elgg_view_form('images/upload', [
@@ -45,9 +47,7 @@ if (elgg_is_xhr()) {
 	$body = elgg_view_layout('content', [
 		'content' => $content,
 		'title' => $title,
-		'filter' => elgg_view('filters/images/edit', [
-			'filter_context' => 'index',
-		]),
+		'filter' => elgg_view('filters/images/edit', $vars),
 	]);
 }
 
