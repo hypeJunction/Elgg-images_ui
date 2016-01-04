@@ -1,6 +1,6 @@
 <?php
 
-$filter_context = elgg_extract('filter_context', $vars, 'index');
+$filter_context = elgg_extract('filter_context', $vars, 'all');
 
 $tabs = [
 	'all' => '/images/all',
