@@ -43,7 +43,6 @@ if (!$entity->canEdit() || !$container->canWriteToContainer(0, $entity->getType(
 $entity = images()->createFromUpload('upload', $entity);
 
 if (!$entity) {
-	$entity->delete();
 	register_error(elgg_echo('images:upload:error:invalid_file'));
 	forward(REFERRER);
 }
