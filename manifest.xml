@@ -15,18 +15,13 @@
 
 	<requires>
 		<type>elgg_release</type>
-		<version>1.11</version>
+		<version>2.1</version>
 	</requires>
 
 	<requires>
 		<type>plugin</type>
 		<name>images</name>
 	</requires>
-
-	<suggests>
-		<type>plugin</type>
-		<name>actions_delete</name>
-	</suggests>
 
 	<suggests>
 		<type>plugin</type>

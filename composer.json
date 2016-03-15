@@ -17,10 +17,9 @@
 	"require": {
 		"php": ">=5.5",
 		"composer/installers": "~1.0",
-		"hypejunction/images": "~1.0"
+		"hypejunction/images": "*"
 	},
 	"suggest": {
-		"hypejunction/actions_delete": "~1.0",
 		"hypejunction/cropper": "~1.0"
 	}
 }
