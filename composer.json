@@ -22,6 +22,10 @@
 	"suggest": {
 		"hypejunction/actions_delete": "~1.0",
 		"hypejunction/cropper": "~1.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
+		}
 	}
 }
-
