@@ -3,10 +3,10 @@
 $guid = elgg_extract('guid', $vars);
 $entity = get_entity($guid);
 if (!images()->isImage($entity)) {
-    forward('', '404');
+    throw new \Elgg\Exceptions\Http\EntityNotFoundException();
 }
 if (!$entity->canEdit()) {
-    forward('', '403');
+    throw new \Elgg\Exceptions\Http\EntityPermissionsException();
 }
 $container = $entity->getContainerEntity();
 elgg_set_page_owner_guid($container->guid);

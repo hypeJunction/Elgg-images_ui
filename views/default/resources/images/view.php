@@ -4,7 +4,7 @@ elgg_push_context('images/view');
 $guid = elgg_extract('guid', $vars);
 $entity = get_entity($guid);
 if (!images()->isImage($entity)) {
-    forward('', '404');
+    throw new \Elgg\Exceptions\Http\EntityNotFoundException();
 }
 $container = $entity->getContainerEntity();
 elgg_set_page_owner_guid($entity->container_guid);
@@ -23,5 +23,5 @@ if (elgg_is_xhr()) {
     echo $content;
 } else {
     $body = elgg_view_layout('content', ['content' => $content, 'title' => $entity->getDisplayName(), 'filter' => '', 'entity' => $entity]);
-    echo elgg_view_page($title, $body, 'default', ['entity' => $entity]);
+    echo elgg_view_page($entity->getDisplayName(), $body, 'default', ['entity' => $entity]);
 }

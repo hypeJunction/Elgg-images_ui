@@ -13,13 +13,11 @@ foreach ($keys as $key) {
 
 $entity = get_entity($params->guid);
 if (!images()->isImage($entity)) {
-	register_error(elgg_echo('images:error:not_found'));
-	forward(REFERRER);
+	return elgg_error_response(elgg_echo('images:error:not_found'));
 }
 
 if (!$entity->canEdit()) {
-	register_error(elgg_echo('images:error:permission_denied'));
-	forward(REFERRER);
+	return elgg_error_response(elgg_echo('images:error:permission_denied'));
 }
 
 $cropped = images()->crop($entity, $params->crop_coords['x1'], $params->crop_coords['y1'], $params->crop_coords['x2'], $params->crop_coords['y2']);
@@ -29,9 +27,7 @@ if ($cropped) {
 	unset($entity->y1);
 	unset($entity->x2);
 	unset($entity->y2);
-	system_message(elgg_echo('images:crop:success'));
-} else {
-	register_error(elgg_echo('images:crop:error'));
+	return elgg_ok_response('', elgg_echo('images:crop:success'));
 }
 
-forward(REFERRER);
+return elgg_error_response(elgg_echo('images:crop:error'));

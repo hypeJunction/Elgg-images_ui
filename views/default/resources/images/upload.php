@@ -7,10 +7,10 @@ if (!$container_guid) {
 }
 $container = get_entity($container_guid);
 if (!$container) {
-    forward('', '404');
+    throw new \Elgg\Exceptions\Http\EntityNotFoundException();
 }
 if (!$container->canWriteToContainer(0, 'object', 'file')) {
-    forward('', '403');
+    throw new \Elgg\Exceptions\Http\EntityPermissionsException();
 }
 elgg_set_page_owner_guid($container->guid);
 elgg_entity_gatekeeper();
