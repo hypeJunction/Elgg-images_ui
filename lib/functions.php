@@ -20,9 +20,12 @@ function images_ui_get_subtypes(array $params = []) {
  * @param array  $params Hook params
  * @return string|void
  */
-function images_ui_entity_url($hook, $type, $return, $params) {
-	$entity = elgg_extract('entity', $params);
-	if (!images()->isImage($entity)) {
+function images_ui_entity_url($hook, $type = null, $return = null, $params = null) {
+	if ($hook instanceof \Elgg\Hook) {
+		$params = $hook->getParams();
+	}
+	$entity = elgg_extract('entity', (array) $params);
+	if (!function_exists('images') || !images()->isImage($entity)) {
 		return;
 	}
 	return elgg_normalize_url("/images/view/{$entity->guid}");
@@ -37,11 +40,16 @@ function images_ui_entity_url($hook, $type, $return, $params) {
  * @param array          $params Hook params
  * @return ElggMenuItem[]|void
  */
-function images_ui_setup_entity_menu($hook, $type, $return, $params) {
-	$entity = elgg_extract('entity', $params);
-	if (!images()->isImage($entity)) {
+function images_ui_setup_entity_menu($hook, $type = null, $return = null, $params = null) {
+	if ($hook instanceof \Elgg\Hook) {
+		$params = $hook->getParams();
+		$return = $hook->getValue();
+	}
+	$entity = elgg_extract('entity', (array) $params);
+	if (!function_exists('images') || !images()->isImage($entity)) {
 		return;
 	}
+	$return = (array) $return;
 	if ($entity->canEdit()) {
 		$return[] = ElggMenuItem::factory([
 			'name' => 'edit',
@@ -65,10 +73,13 @@ function images_ui_setup_entity_menu($hook, $type, $return, $params) {
 /**
  * Icon URL handler for image entities
  */
-function images_entity_icon_url($hook, $type, $return, $params) {
-	$size = elgg_extract('size', $params, 'medium');
-	$entity = elgg_extract('entity', $params);
-	if (!images()->isImage($entity)) {
+function images_entity_icon_url($hook, $type = null, $return = null, $params = null) {
+	if ($hook instanceof \Elgg\Hook) {
+		$params = $hook->getParams();
+	}
+	$size = elgg_extract('size', (array) $params, 'medium');
+	$entity = elgg_extract('entity', (array) $params);
+	if (!function_exists('images') || !images()->isImage($entity)) {
 		return;
 	}
 	$thumb = images()->getThumb($entity, $size);
@@ -81,8 +92,11 @@ function images_entity_icon_url($hook, $type, $return, $params) {
 /**
  * Update event handler for image entities
  */
-function images_update_event_handler($event, $type, $entity) {
-	if (!images()->isImage($entity)) {
+function images_update_event_handler($event, $type = null, $entity = null) {
+	if ($event instanceof \Elgg\Event) {
+		$entity = $event->getObject();
+	}
+	if (!function_exists('images') || !images()->isImage($entity)) {
 		return;
 	}
 	if ($entity->icon_owner_guid && $entity->icon_owner_guid != $entity->owner_guid) {
@@ -101,6 +115,11 @@ function images_update_event_handler($event, $type, $entity) {
 /**
  * Delete event handler for image entities
  */
-function images_delete_event_handler($event, $type, $entity) {
-	images()->clearThumbs($entity);
+function images_delete_event_handler($event, $type = null, $entity = null) {
+	if ($event instanceof \Elgg\Event) {
+		$entity = $event->getObject();
+	}
+	if ($entity instanceof \ElggEntity && function_exists('images')) {
+		images()->clearThumbs($entity);
+	}
 }
