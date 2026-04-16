@@ -10,14 +10,14 @@ $user_guid = (int) elgg_get_page_owner_guid();
 switch ($filter) {
     case 'friends':
         $options['wheres'][] = function (\Elgg\Database\QueryBuilder $qb, $main_alias) use ($user_guid) {
-            $dbprefix = elgg_get_config('dbprefix');
-            return "{$main_alias}.owner_guid IN (SELECT guid_one FROM {$dbprefix}entity_relationships WHERE relationship = 'friend' AND guid_two = {$user_guid})";
+            $prefix = elgg()->db->getTablePrefix();
+            return "{$main_alias}.owner_guid IN (SELECT guid_one FROM {$prefix}entity_relationships WHERE relationship = 'friend' AND guid_two = {$user_guid})";
         };
         break;
     case 'groups':
         $options['wheres'][] = function (\Elgg\Database\QueryBuilder $qb, $main_alias) use ($user_guid) {
-            $dbprefix = elgg_get_config('dbprefix');
-            return "{$main_alias}.container_guid IN (SELECT guid_two FROM {$dbprefix}entity_relationships WHERE relationship = 'member' AND guid_one = {$user_guid})";
+            $prefix = elgg()->db->getTablePrefix();
+            return "{$main_alias}.container_guid IN (SELECT guid_two FROM {$prefix}entity_relationships WHERE relationship = 'member' AND guid_one = {$user_guid})";
         };
         break;
 }

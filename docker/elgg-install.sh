@@ -41,7 +41,7 @@ SETTINGS_TEMPLATE
 \$CONFIG->dbprefix = 'elgg_';
 \$CONFIG->dbencoding = 'utf8mb4';
 \$CONFIG->dataroot = '${ELGG_DATA_ROOT:-/var/www/data/}';
-\$CONFIG->wwwroot = '${ELGG_SITE_URL:-http://localhost:8480/}';
+\$CONFIG->wwwroot = '${ELGG_SITE_URL:-http://elgg/}';
 \$CONFIG->cacheroot = '${ELGG_DATA_ROOT:-/var/www/data/}cache/';
 \$CONFIG->assetroot = '${ELGG_DATA_ROOT:-/var/www/data/}assets/';
 SETTINGS_VALUES
@@ -58,7 +58,7 @@ SETTINGS_VALUES
             'dbprefix' => 'elgg_',
             'sitename' => 'Elgg 4.x Plugin Test',
             'siteemail' => '${ELGG_ADMIN_EMAIL:-admin@example.com}',
-            'wwwroot' => '${ELGG_SITE_URL:-http://localhost:8480/}',
+            'wwwroot' => '${ELGG_SITE_URL:-http://elgg/}',
             'dataroot' => '${ELGG_DATA_ROOT:-/var/www/data/}',
             'displayname' => 'Admin',
             'email' => '${ELGG_ADMIN_EMAIL:-admin@example.com}',
@@ -140,6 +140,18 @@ SETTINGS_VALUES
             }
         }
     " 2>&1 || echo "Plugin activation completed (check for errors above)."
+
+    # Clear system cache so it regenerates on next boot with all active plugins'
+    # views registered. Without this, the boot cache built before activation
+    # is stale and PHPUnit sees no plugin views on first run.
+    echo "Clearing system cache..."
+    php -r "
+        require_once 'vendor/autoload.php';
+        \$app = \Elgg\Application::getInstance();
+        \$app->bootCore();
+        elgg_clear_caches();
+        echo 'System cache cleared.' . PHP_EOL;
+    " 2>&1 || echo "Cache clear completed (check for errors above)."
 
     touch /var/www/html/.elgg-installed
     echo "Elgg 4.x setup complete."

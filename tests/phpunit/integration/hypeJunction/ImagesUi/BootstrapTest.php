@@ -38,10 +38,12 @@ class BootstrapTest extends IntegrationTestCase {
     public function testSiteMenuItemRegistered(): void {
         $menu = _elgg_services()->menus->getMenu('site', []);
         $found = false;
-        foreach ($menu->getItems('default') ?: [] as $item) {
-            if ($item->getName() === 'images') {
-                $found = true;
-                break;
+        foreach ($menu->getSections() as $section) {
+            foreach ($section->getItems() as $item) {
+                if ($item->getName() === 'images') {
+                    $found = true;
+                    break 2;
+                }
             }
         }
         $this->assertTrue($found, 'Expected "images" item in site menu');

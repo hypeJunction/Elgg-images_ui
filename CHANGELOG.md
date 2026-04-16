@@ -1,3 +1,22 @@
+<a name="4.0.0"></a>
+## 4.0.0 (2026-04-16)
+
+### Breaking Changes
+
+* Requires Elgg 4.x (`elgg/elgg ^4.0`, PHP >=7.4)
+* Removed `start.php` and `manifest.xml` — `elgg-plugin.php` is now the sole plugin descriptor
+
+### Features
+
+* Bootstrap class (`hypeJunction\ImagesUi\Bootstrap`) replaces `start.php`
+* Routes and actions declared declaratively in `elgg-plugin.php`
+* `images` is now a required Composer dependency (standalone service plugin)
+
+### Bug Fixes
+
+* `dbprefix` subquery access replaced with `elgg()->db->getTablePrefix()` (security)
+* `ElggFile::detectMimeType()` removed in Elgg 4.x — `ImageService::isImage()` updated to use `mime_content_type()` when file exists on disk
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/hypeJunction/Elgg-images_ui/compare/1.0.1...v1.0.2) (2016-01-06)
 

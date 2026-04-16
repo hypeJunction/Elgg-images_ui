@@ -56,9 +56,8 @@ class HooksTest extends IntegrationTestCase {
         $this->assertTrue(function_exists('images_ui_entity_url'));
         $this->assertTrue(function_exists('images_ui_setup_entity_menu'));
         $this->assertTrue(function_exists('images_ui_get_subtypes'));
-        $this->assertTrue(function_exists('images_entity_icon_url'));
-        $this->assertTrue(function_exists('images_update_event_handler'));
-        $this->assertTrue(function_exists('images_delete_event_handler'));
+        // images_entity_icon_url, images_update_event_handler, images_delete_event_handler
+        // are now anonymous closures in hypeJunction\Images\Bootstrap — no global function names.
     }
 
     public function testEntityUrlHookSkipsNonImage(): void {
