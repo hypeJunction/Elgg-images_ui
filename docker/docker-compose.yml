@@ -27,6 +27,8 @@ services:
       # Plugin source is mounted read-write so composer install and test
       # artifacts written inside the container land back in the repo.
       - ..:/var/www/html/mod/${PLUGIN_ID}
+      # images dep: standalone workspace plugin (Elgg 4.x, no start.php)
+      - ../../images:/var/www/html/mod/images
     environment:
       PLUGIN_ID: ${PLUGIN_ID}
       ELGG_DB_HOST: db

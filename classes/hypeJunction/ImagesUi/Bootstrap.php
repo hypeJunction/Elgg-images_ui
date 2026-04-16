@@ -37,11 +37,6 @@ class Bootstrap extends PluginBootstrap {
 		elgg_register_plugin_hook_handler('register', 'menu:entity', 'images_ui_setup_entity_menu');
 
 		elgg_extend_view('css/elgg', 'images_ui.css');
-
-		// Image submodule hooks
-		elgg_register_plugin_hook_handler('entity:icon:url', 'object', 'images_entity_icon_url');
-		elgg_register_event_handler('update:after', 'object', 'images_update_event_handler');
-		elgg_register_event_handler('delete', 'object', 'images_delete_event_handler');
 	}
 
 	/**

@@ -3,6 +3,14 @@
 return [
 	'bootstrap' => \hypeJunction\ImagesUi\Bootstrap::class,
 
+	'plugin' => [
+		'dependencies' => [
+			'images' => [
+				'position' => 'after',
+			],
+		],
+	],
+
 	'actions' => [
 		'images/upload' => [],
 		'images/crop' => [],
