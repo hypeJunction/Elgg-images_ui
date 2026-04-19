@@ -5,7 +5,10 @@
 	"description": "Images API",
 	"homepage": "http://hypejunction.com",
 	"keywords": [
-		"elgg", "plugin", "image", "UI"
+		"elgg",
+		"plugin",
+		"image",
+		"UI"
 	],
 	"license": "GPL-2.0",
 	"authors": [
@@ -27,6 +30,11 @@
 	"config": {
 		"allow-plugins": {
 			"composer/installers": true
+		}
+	},
+	"extra": {
+		"elgg-plugin": {
+			"id": "images_ui"
 		}
 	}
 }
