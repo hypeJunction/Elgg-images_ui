@@ -35,9 +35,10 @@ class HooksTest extends IntegrationTestCase {
     }
 
     public function testEntityIconUrlHookRegistered(): void {
-        $hooks = _elgg_services()->hooks->getAllHandlers();
-        $this->assertArrayHasKey('entity:icon:url', $hooks);
-        $this->assertArrayHasKey('object', $hooks['entity:icon:url']);
+        // images dep registers entity:icon:url as an event (not a legacy hook) in its 4.x Bootstrap
+        $events = _elgg_services()->events->getAllHandlers();
+        $this->assertArrayHasKey('entity:icon:url', $events);
+        $this->assertArrayHasKey('object', $events['entity:icon:url']);
     }
 
     public function testUpdateEventRegistered(): void {
