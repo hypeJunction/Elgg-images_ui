@@ -1,4 +1,4 @@
-# images_ui — Architecture (Elgg 4.x)
+# images_ui — Architecture (Elgg 5.x)
 
 ## Plugin Summary
 
@@ -32,25 +32,23 @@ images_ui/
 └── elgg-plugin.php
 ```
 
-## Registered Hooks (Elgg 4.x plugin hooks)
+## Registered Events (Elgg 5.x unified events system)
 
-| Hook | Type | Handler | Purpose |
-|------|------|---------|---------|
+| Event | Type | Handler | Purpose |
+|-------|------|---------|---------|
 | `entity:url` | `object` | `images_ui_entity_url` | Returns `/images/view/{guid}` URL for image entities |
 | `register` | `menu:entity` | `images_ui_setup_entity_menu` | Adds edit/delete menu items for image owners |
 
-## Registered Events (Elgg 4.x events)
-
-None registered directly by images_ui — entity lifecycle events (create, update, delete) are registered by the `images` dep plugin.
+Entity lifecycle events (create, update, delete) are registered by the `images` dep plugin.
 
 ## Routes
 
 | Route name | Path | Resource view |
 |-----------|------|--------------|
 | `collection:object:image` | `/images/all` | `resources/images/all` |
-| `collection:object:image:owner` | `/images/owner/{username}` | `resources/images/all` |
-| `collection:object:image:friends` | `/images/friends/{username}` | `resources/images/friends` |
-| `collection:object:image:groups` | `/images/groups/{username}` | `resources/images/groups` |
+| `collection:object:image:owner` | `/images/owner/{username}` | `resources/images/all` | `UserPageOwnerGatekeeper` |
+| `collection:object:image:friends` | `/images/friends/{username}` | `resources/images/friends` | `UserPageOwnerGatekeeper` |
+| `collection:object:image:groups` | `/images/groups/{username}` | `resources/images/groups` | `UserPageOwnerGatekeeper` |
 | `add:object:image` | `/images/upload/{container_guid?}` | `resources/images/upload` |
 | `edit:object:image` | `/images/edit/{guid}` | `resources/images/edit` |
 | `view:object:image` | `/images/view/{guid}` | `resources/images/view` |
@@ -100,3 +98,15 @@ images_ui extends `css/elgg` with the `images_ui.css` view, injected via
 - `dbprefix` subquery access in `lists/images/all.php` updated to use `elgg()->db->getTablePrefix()`
 - Bug fix in `images` dep plugin: `ElggFile::detectMimeType()` was removed in Elgg 4.x; `ImageService::isImage()` updated to fall back to `mime_content_type()` only when the file exists on disk
 - Hook callback signatures: guarded for both 4.x 1-arg `\Elgg\Hook` and legacy 4-arg style
+
+## Migration Notes (4.x → 5.x)
+
+- Merged hooks into the unified events system: `elgg_register_plugin_hook_handler()` → `elgg_register_event_handler()` throughout
+- All hook callbacks converted to single `\Elgg\Event $event` signature (removed `\Elgg\Hook` compat shim)
+- `elgg_trigger_plugin_hook()` → `elgg_trigger_event_results()` in `lib/functions.php` and views
+- `get_default_access()` removed in 5.x; replaced with `elgg_get_config('default_access') ?? ACCESS_PUBLIC` in upload action
+- `current_page_url()` removed in 5.x; replaced with `elgg_get_current_url()` in two views
+- Added `UserPageOwnerGatekeeper` middleware to owner/friends/groups routes
+- Docker: PHP 8.2-apache, MySQL 8.0, Elgg 5.x (`~5.1.0`), Playwright 1.59.1
+- Tests: `ElggSession::setLoggedInUser()` → `_elgg_services()->session_manager->setLoggedInUser()`; `->hooks->getAllHandlers()` → `->events->getAllHandlers()`
+- No data migration required (no private settings, no schema changes)

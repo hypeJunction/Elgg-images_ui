@@ -1,3 +1,25 @@
+<a name="5.0.0"></a>
+## 5.0.0 (2026-05-05)
+
+### Breaking Changes
+
+* Requires Elgg 5.x (`elgg/elgg ^5.0`, PHP >=8.2)
+* Plugin hooks (`elgg_register_plugin_hook_handler`) fully replaced by the unified events API (`elgg_register_event_handler`)
+* All hook handler callbacks now use `\Elgg\Event` signature (4-arg callbacks removed)
+
+### Features
+
+* Route middleware: `UserPageOwnerGatekeeper` added to owner, friends, and groups collection routes
+* Docker test stack upgraded to PHP 8.2-apache, MySQL 8.0, Elgg 5.x, Playwright 1.59.1
+
+### Bug Fixes
+
+* `get_default_access()` removed in Elgg 5.x — replaced with `elgg_get_config('default_access')` in upload action
+* `current_page_url()` removed in Elgg 5.x — replaced with `elgg_get_current_url()` in filter and list views
+* Playwright config: `baseURL` moved inside `use:{}` block (required for Playwright >=1.50)
+
+---
+
 <a name="4.0.0"></a>
 ## 4.0.0 (2026-04-16)
 
