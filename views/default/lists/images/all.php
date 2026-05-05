@@ -5,7 +5,7 @@ $owner_guids = elgg_extract('owner_guids', $vars);
 $container_guids = elgg_extract('container_guids', $vars);
 $list_type = elgg_extract('list_type', $vars, get_input('list_type', 'list'));
 $filter = elgg_extract('filter', $vars);
-$options = ['types' => 'object', 'subtypes' => $subtypes, 'owner_guids' => $owner_guids ?: ELGG_ENTITIES_ANY_VALUE, 'container_guids' => $container_guids ?: ELGG_ENTITIES_ANY_VALUE, 'metadata_name_value_pairs' => ['name' => 'simpletype', 'value' => 'image'], 'base_url' => current_page_url(), 'no_results' => elgg_echo('images:no_results'), 'list_type_toggle' => true, 'list_type' => $list_type, 'list_class' => 'elgg-list-images', 'gallery_class' => 'elgg-gallery-images', 'item_view' => 'lists/images/item', 'size' => 'large'];
+$options = ['types' => 'object', 'subtypes' => $subtypes, 'owner_guids' => $owner_guids ?: ELGG_ENTITIES_ANY_VALUE, 'container_guids' => $container_guids ?: ELGG_ENTITIES_ANY_VALUE, 'metadata_name_value_pairs' => ['name' => 'simpletype', 'value' => 'image'], 'base_url' => elgg_get_current_url(), 'no_results' => elgg_echo('images:no_results'), 'list_type_toggle' => true, 'list_type' => $list_type, 'list_class' => 'elgg-list-images', 'gallery_class' => 'elgg-gallery-images', 'item_view' => 'lists/images/item', 'size' => 'large'];
 $user_guid = (int) elgg_get_page_owner_guid();
 switch ($filter) {
     case 'friends':
@@ -21,5 +21,5 @@ switch ($filter) {
         };
         break;
 }
-$options = elgg_trigger_plugin_hook('list_options', 'lists/images/all', $vars, $options);
+$options = elgg_trigger_event_results('list_options', 'lists/images/all', $vars, $options);
 echo elgg_list_entities($options);

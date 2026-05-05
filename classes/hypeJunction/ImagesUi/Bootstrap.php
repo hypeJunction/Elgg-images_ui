@@ -33,8 +33,8 @@ class Bootstrap extends PluginBootstrap {
 			'href' => '/images/all',
 		]);
 
-		elgg_register_plugin_hook_handler('entity:url', 'object', 'images_ui_entity_url');
-		elgg_register_plugin_hook_handler('register', 'menu:entity', 'images_ui_setup_entity_menu');
+		elgg_register_event_handler('entity:url', 'object', 'images_ui_entity_url');
+		elgg_register_event_handler('register', 'menu:entity', 'images_ui_setup_entity_menu');
 
 		elgg_extend_view('css/elgg', 'images_ui.css');
 	}

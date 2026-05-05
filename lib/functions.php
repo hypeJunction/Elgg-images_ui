@@ -4,27 +4,21 @@
  * Get object subtypes that may contain image files
  * Image files must have 'simpletype' metadata set to 'image'
  *
- * @param array $params Params to pass to the hook
+ * @param array $params Params to pass to the event
  * @return array
  */
 function images_ui_get_subtypes(array $params = []) {
-	return elgg_trigger_plugin_hook('get_subtypes', 'images', $params, ['file']);
+	return elgg_trigger_event_results('get_subtypes', 'images', $params, ['file']);
 }
 
 /**
  * Image URL handler
  *
- * @param string $hook   "entity:url"
- * @param string $type   "object"
- * @param string $return URL
- * @param array  $params Hook params
+ * @param \Elgg\Event $event "entity:url" "object"
  * @return string|void
  */
-function images_ui_entity_url($hook, $type = null, $return = null, $params = null) {
-	if ($hook instanceof \Elgg\Hook) {
-		$params = $hook->getParams();
-	}
-	$entity = elgg_extract('entity', (array) $params);
+function images_ui_entity_url(\Elgg\Event $event) {
+	$entity = $event->getEntityParam();
 	if (!function_exists('images') || !images()->isImage($entity)) {
 		return;
 	}
@@ -34,22 +28,15 @@ function images_ui_entity_url($hook, $type = null, $return = null, $params = nul
 /**
  * Setup image menu
  *
- * @param string         $hook   "register"
- * @param string         $type   "menu:entity"
- * @param ElggMenuItem[] $return Menu
- * @param array          $params Hook params
- * @return ElggMenuItem[]|void
+ * @param \Elgg\Event $event "register" "menu:entity"
+ * @return \Elgg\Collections\Collection|void
  */
-function images_ui_setup_entity_menu($hook, $type = null, $return = null, $params = null) {
-	if ($hook instanceof \Elgg\Hook) {
-		$params = $hook->getParams();
-		$return = $hook->getValue();
-	}
-	$entity = elgg_extract('entity', (array) $params);
+function images_ui_setup_entity_menu(\Elgg\Event $event) {
+	$entity = $event->getEntityParam();
 	if (!function_exists('images') || !images()->isImage($entity)) {
 		return;
 	}
-	$return = (array) $return;
+	$return = $event->getValue();
 	if ($entity->canEdit()) {
 		$return[] = ElggMenuItem::factory([
 			'name' => 'edit',
@@ -69,4 +56,3 @@ function images_ui_setup_entity_menu($hook, $type = null, $return = null, $param
 	}
 	return $return;
 }
-

@@ -25,14 +25,23 @@ return [
 		'collection:object:image:owner' => [
 			'path' => '/images/owner/{username}',
 			'resource' => 'images/all',
+			'middleware' => [
+				\Elgg\Router\Middleware\UserPageOwnerGatekeeper::class,
+			],
 		],
 		'collection:object:image:friends' => [
 			'path' => '/images/friends/{username}',
 			'resource' => 'images/friends',
+			'middleware' => [
+				\Elgg\Router\Middleware\UserPageOwnerGatekeeper::class,
+			],
 		],
 		'collection:object:image:groups' => [
 			'path' => '/images/groups/{username}',
 			'resource' => 'images/groups',
+			'middleware' => [
+				\Elgg\Router\Middleware\UserPageOwnerGatekeeper::class,
+			],
 		],
 		'add:object:image' => [
 			'path' => '/images/upload/{container_guid?}',

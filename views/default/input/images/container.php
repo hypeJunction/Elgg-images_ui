@@ -1,7 +1,7 @@
 <?php
 
 $container_guids = [];
-$containers = elgg_trigger_plugin_hook('containers', 'images', $vars, []);
+$containers = elgg_trigger_event_results('containers', 'images', $vars, []);
 if (is_array($containers) || $containers instanceof ElggBatch) {
 	foreach ($containers as $container) {
 		if ($container instanceof ElggEntity) {

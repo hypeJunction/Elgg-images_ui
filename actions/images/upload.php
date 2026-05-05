@@ -38,7 +38,7 @@ if (!$entity) {
 $entity->title = $params->title;
 $entity->description = $params->description;
 $entity->tags = string_to_tag_array((string) $params->tags);
-$entity->access_id = isset($params->access_id) ? $params->access_id : get_default_access();
+$entity->access_id = isset($params->access_id) ? $params->access_id : (elgg_get_config('default_access') ?? ACCESS_PUBLIC);
 if ($entity->save()) {
     if (!$params->guid) {
         elgg_create_river_item(['view' => 'river/object/image', 'action_type' => 'create', 'subject_guid' => elgg_get_logged_in_user_guid(), 'object_guid' => $entity->guid]);
