@@ -9,7 +9,7 @@ use Elgg\IntegrationTestCase;
  * simpletype=image as "images". These tests validate that assumption at
  * the data layer.
  *
- * Note: each test logs in as the entity owner before saving because Elgg 4.x
+ * Note: each test logs in as the entity owner before saving because Elgg 5.x
  * requires the logged-in user to have write access to the owner's container.
  */
 class ImageEntityTest extends IntegrationTestCase {
@@ -17,7 +17,7 @@ class ImageEntityTest extends IntegrationTestCase {
     public function up() {}
 
     public function down() {
-        elgg_get_session()->removeLoggedInUser();
+        _elgg_services()->session_manager->removeLoggedInUser();
     }
 
     public function getPluginID(): string {
@@ -26,7 +26,7 @@ class ImageEntityTest extends IntegrationTestCase {
 
     public function testFileEntityCanBeCreatedWithImageSimpletype(): void {
         $user = $this->createUser();
-        elgg_get_session()->setLoggedInUser($user);
+        _elgg_services()->session_manager->setLoggedInUser($user);
 
         $entity = new \ElggFile();
         $entity->owner_guid = $user->guid;
@@ -34,7 +34,6 @@ class ImageEntityTest extends IntegrationTestCase {
         $entity->access_id = ACCESS_PUBLIC;
         $entity->title = 'Test Image';
         $entity->simpletype = 'image';
-        // Do not set mimetype to avoid triggering thumbnail creation on a non-existent file.
         $this->assertNotFalse($entity->save());
 
         _elgg_services()->entityCache->delete($entity->guid);
@@ -47,7 +46,7 @@ class ImageEntityTest extends IntegrationTestCase {
 
     public function testOwnerCanEditImage(): void {
         $owner = $this->createUser();
-        elgg_get_session()->setLoggedInUser($owner);
+        _elgg_services()->session_manager->setLoggedInUser($owner);
 
         $entity = new \ElggFile();
         $entity->owner_guid = $owner->guid;
@@ -64,7 +63,7 @@ class ImageEntityTest extends IntegrationTestCase {
     public function testNonOwnerCannotEditImage(): void {
         $owner = $this->createUser();
         $other = $this->createUser();
-        elgg_get_session()->setLoggedInUser($owner);
+        _elgg_services()->session_manager->setLoggedInUser($owner);
 
         $entity = new \ElggFile();
         $entity->owner_guid = $owner->guid;
@@ -80,7 +79,7 @@ class ImageEntityTest extends IntegrationTestCase {
 
     public function testImageTagsPersist(): void {
         $user = $this->createUser();
-        elgg_get_session()->setLoggedInUser($user);
+        _elgg_services()->session_manager->setLoggedInUser($user);
 
         $entity = new \ElggFile();
         $entity->owner_guid = $user->guid;
@@ -101,7 +100,7 @@ class ImageEntityTest extends IntegrationTestCase {
 
     public function testCropCoordinatesPersistAsMetadata(): void {
         $user = $this->createUser();
-        elgg_get_session()->setLoggedInUser($user);
+        _elgg_services()->session_manager->setLoggedInUser($user);
 
         $entity = new \ElggFile();
         $entity->owner_guid = $user->guid;
