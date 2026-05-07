@@ -3,33 +3,38 @@
 $guid = elgg_extract('guid', $vars);
 $entity = get_entity($guid);
 if (!images()->isImage($entity)) {
-    throw new \Elgg\Exceptions\Http\EntityNotFoundException();
+	throw new \Elgg\Exceptions\Http\EntityNotFoundException();
 }
+
 if (!$entity->canEdit()) {
-    throw new \Elgg\Exceptions\Http\EntityPermissionsException();
+	throw new \Elgg\Exceptions\Http\EntityPermissionsException();
 }
+
 $container = $entity->getContainerEntity();
 elgg_set_page_owner_guid($container->guid);
 elgg_entity_gatekeeper();
 elgg_push_breadcrumb(elgg_echo('images'), '/images/all');
 if ($container) {
-    elgg_push_breadcrumb($container->getDisplayName(), "/images/all/{$entity->container_guid}");
+	elgg_push_breadcrumb($container->getDisplayName(), "/images/all/{$entity->container_guid}");
 }
+
 elgg_push_breadcrumb($entity->getDisplayName(), $entity->getURL());
 $title = elgg_echo('images:edit');
 elgg_push_breadcrumb($title);
 if (elgg_is_sticky_form('images/upload')) {
-    $sticky_values = elgg_get_sticky_values('images/upload');
-    if (is_array($sticky_values)) {
-        $vars = array_merge($vars, $sticky_values);
-    }
+	$sticky_values = elgg_get_sticky_values('images/upload');
+	if (is_array($sticky_values)) {
+		$vars = array_merge($vars, $sticky_values);
+	}
 }
+
 $vars['filter_context'] = 'index';
 $vars['entity'] = $entity;
 $content = elgg_view_form('images/upload', ['enctype' => 'multipart/form-data', 'validate' => true], $vars);
 if (elgg_is_xhr()) {
-    echo $content;
+	echo $content;
 } else {
-    $body = elgg_view_layout('content', ['content' => $content, 'title' => $title, 'filter' => elgg_view('filters/images/edit', $vars)]);
+	$body = elgg_view_layout('content', ['content' => $content, 'title' => $title, 'filter' => elgg_view('filters/images/edit', $vars)]);
 }
+
 echo elgg_view_page($title, $body);

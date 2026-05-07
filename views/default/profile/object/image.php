@@ -9,7 +9,7 @@ $owner = $entity->getOwnerEntity();
 $owner_link = elgg_view('output/url', [
 	'href' => $owner->getURL(),
 	'text' => $owner->getDisplayName(),
-		]);
+]);
 $owner_icon = elgg_view_entity_icon($owner, 'small');
 
 $author_text = elgg_echo('byline', [$owner_link]);
@@ -21,7 +21,7 @@ $metadata = elgg_view_menu('entity', [
 	'entity' => $entity,
 	'sort_by' => 'priority',
 	'class' => 'elgg-menu-hz',
-		]);
+]);
 
 $params = [
 	'entity' => $entity,
@@ -34,9 +34,9 @@ $summary = elgg_view('object/elements/summary', $params);
 
 $body = elgg_view('output/longtext', [
 	'value' => $entity->description
-		]);
+]);
 
-$mimetype = $entity->mimetype ? : $entity->detectMimeType();
+$mimetype = $entity->mimetype ?: $entity->detectMimeType();
 list($basetype, $subtype) = explode('/', $mimetype);
 
 $extra = '';

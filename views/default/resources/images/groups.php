@@ -32,7 +32,7 @@ if ($user->canWriteToContainer(0, 'object', 'file')) {
 
 $content = elgg_view('lists/images/all', [
 	'filter' => 'groups',
-		]);
+]);
 
 if (elgg_is_xhr()) {
 	echo $content;

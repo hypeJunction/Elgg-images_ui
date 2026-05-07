@@ -22,6 +22,7 @@ function images_ui_entity_url(\Elgg\Event $event) {
 	if (!function_exists('images') || !images()->isImage($entity)) {
 		return;
 	}
+
 	return elgg_normalize_url("/images/view/{$entity->guid}");
 }
 
@@ -36,6 +37,7 @@ function images_ui_setup_entity_menu(\Elgg\Event $event) {
 	if (!function_exists('images') || !images()->isImage($entity)) {
 		return;
 	}
+
 	$return = $event->getValue();
 	if ($entity->canEdit()) {
 		$return[] = ElggMenuItem::factory([
@@ -54,5 +56,6 @@ function images_ui_setup_entity_menu(\Elgg\Event $event) {
 			'priority' => 300,
 		]);
 	}
+
 	return $return;
 }
