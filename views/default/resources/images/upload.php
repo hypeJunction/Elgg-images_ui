@@ -17,7 +17,7 @@ if (!$container->canWriteToContainer(0, 'object', 'file')) {
 }
 
 elgg_set_page_owner_guid($container->guid);
-elgg_entity_gatekeeper();
+elgg_entity_gatekeeper($container->guid);
 elgg_push_breadcrumb(elgg_echo('images'), '/images/all');
 elgg_push_breadcrumb($container->getDisplayName(), "/images/all/{$container->guid}");
 $title = elgg_echo('images:upload');

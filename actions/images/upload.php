@@ -10,15 +10,15 @@ foreach ($keys as $key) {
 	}
 }
 
-$entity = get_entity($params->guid);
+$entity = (int) $params->guid ? get_entity((int) $params->guid) : null;
 if ($params->guid && !$entity instanceof ElggFile) {
 	return elgg_error_response(elgg_echo('images:error:not_found'));
 }
 
 if ($entity instanceof ElggFile) {
 	$container = $entity->getContainerEntity();
-} else if (isset($params->container_guid)) {
-	$container = get_entity($params->container_guid);
+} else if (!empty($params->container_guid)) {
+	$container = get_entity((int) $params->container_guid);
 } else {
 	$container = elgg_get_logged_in_user_entity();
 }
