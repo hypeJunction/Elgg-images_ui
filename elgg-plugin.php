@@ -44,7 +44,11 @@ return [
 			],
 		],
 		'add:object:image' => [
-			'path' => '/images/upload/{container_guid?}',
+			'path' => '/images/upload/{container_guid}',
+			'resource' => 'images/upload',
+		],
+		'add:object:image:default' => [
+			'path' => '/images/upload',
 			'resource' => 'images/upload',
 		],
 		'edit:object:image' => [

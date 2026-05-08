@@ -1,8 +1,8 @@
 <?php
 
 elgg_push_context('images/all');
-$target_guid = elgg_extract('target_guid', $vars);
-$target = get_entity($target_guid);
+$target_guid = (int) elgg_extract('target_guid', $vars);
+$target = $target_guid ? get_entity($target_guid) : null;
 elgg_push_breadcrumb(elgg_echo('images'), '/images/all');
 if ($target) {
 	elgg_set_page_owner_guid($target->guid);
@@ -29,7 +29,7 @@ if ($target) {
 	$filter_context = 'all';
 }
 
-if ($target->canWriteToContainer(0, 'object', 'file')) {
+if ($target && $target->canWriteToContainer(0, 'object', 'file')) {
 	elgg_register_menu_item('title', ['name' => 'add', 'text' => elgg_echo('images:upload'), 'href' => "/images/add/{$target->guid}", 'class' => 'elgg-button elgg-button-action']);
 }
 

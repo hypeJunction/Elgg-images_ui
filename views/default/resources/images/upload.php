@@ -1,12 +1,13 @@
 <?php
 
 elgg_push_context('images/upload');
-$container_guid = elgg_extract('container_guid', $vars);
+elgg_gatekeeper();
+$container_guid = (int) elgg_extract('container_guid', $vars);
 if (!$container_guid) {
 	$container_guid = elgg_get_logged_in_user_guid();
 }
 
-$container = get_entity($container_guid);
+$container = $container_guid ? get_entity($container_guid) : null;
 if (!$container) {
 	throw new \Elgg\Exceptions\Http\EntityNotFoundException();
 }

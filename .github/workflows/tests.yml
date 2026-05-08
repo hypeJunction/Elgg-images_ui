@@ -76,8 +76,10 @@ jobs:
               $r = $pdo->query("SHOW CREATE TABLE $t")->fetch(PDO::FETCH_ASSOC);
               $pdo->exec(str_replace($t, $new, $r["Create Table"]));
           }
-          foreach (["config","entities","metadata","private_settings","entity_relationships"] as $t) {
-              $pdo->exec("INSERT INTO c_i_elgg_$t SELECT * FROM elgg_$t");
+          foreach (["config","entities","metadata","entity_relationships"] as $t) {
+              if ($pdo->query("SHOW TABLES LIKE \"elgg_$t\"")->rowCount() > 0) {
+                  $pdo->exec("INSERT INTO c_i_elgg_$t SELECT * FROM elgg_$t");
+              }
           }
           echo "Test tables ready." . PHP_EOL;
           '

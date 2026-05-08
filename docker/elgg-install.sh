@@ -104,6 +104,24 @@ SETTINGS_VALUES
         }
     " 2>&1 || echo "Plugin activation completed (check for errors above)."
 
+    echo "Creating test user..."
+    php -r "
+        require_once 'vendor/autoload.php';
+        \$app = \Elgg\Application::getInstance();
+        \$app->bootCore();
+        if (!elgg_get_user_by_username('testuser')) {
+            elgg_register_user([
+                'username' => 'testuser',
+                'password' => 'testpass123',
+                'name'     => 'Test User',
+                'email'    => 'testuser@example.com',
+            ]);
+            echo 'testuser created.' . PHP_EOL;
+        } else {
+            echo 'testuser already exists.' . PHP_EOL;
+        }
+    " 2>&1 || echo "Test user creation completed (check for errors above)."
+
     echo "Clearing system cache..."
     php -r "
         require_once 'vendor/autoload.php';
