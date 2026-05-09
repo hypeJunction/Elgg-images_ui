@@ -1,4 +1,4 @@
-# images_ui — Architecture (Elgg 6.x)
+# images_ui — Architecture (Elgg 7.x)
 
 ## Plugin Summary
 
@@ -98,6 +98,13 @@ images_ui extends `css/elgg` with the `images_ui.css` view, injected via
 - `dbprefix` subquery access in `lists/images/all.php` updated to use `elgg()->db->getTablePrefix()`
 - Bug fix in `images` dep plugin: `ElggFile::detectMimeType()` was removed in Elgg 4.x; `ImageService::isImage()` updated to fall back to `mime_content_type()` only when the file exists on disk
 - Hook callback signatures: guarded for both 4.x 1-arg `\Elgg\Hook` and legacy 4-arg style
+
+## Migration Notes (6.x → 7.x)
+
+- `elgg/elgg ~7.0.0`, `php >=8.3` in `composer.json`.
+- Docker test stack added for Elgg 7.x (docker/elgg7/) with PHP 8.3.
+- No breaking changes: no CSS Crush syntax, no direct `ElggObject` instantiation, no removed Elgg APIs.
+- No data migration needed.
 
 ## Migration Notes (5.x → 6.x)
 

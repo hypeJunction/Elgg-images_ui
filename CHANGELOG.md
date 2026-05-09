@@ -1,3 +1,16 @@
+<a name="7.0.0"></a>
+## 7.0.0 (2026-05-09)
+
+### Breaking Changes
+
+* **elgg:** raise minimum to Elgg 7.x (PHP 8.3+).
+
+### Migration (6.x → 7.x)
+
+* **composer:** `elgg/elgg ~7.0.0`, PHP `>=8.3`.
+* **docker:** test stack added for Elgg 7.x (docker/elgg7/).
+* No PHP or CSS breaking changes. No data migration required.
+
 <a name="6.0.0"></a>
 ## 6.0.0 (2026-05-09)
 
