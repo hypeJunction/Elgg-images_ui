@@ -2,8 +2,7 @@
 	"name": "hypejunction/images_ui",
 	"version": "1.1.0",
 	"type": "elgg-plugin",
-	"description": "Images API",
-	"homepage": "http://hypejunction.com",
+	"description": "Standardized UI components for listing, filtering, and displaying image files in Elgg",
 	"keywords": [
 		"elgg",
 		"plugin",
@@ -13,8 +12,7 @@
 	"license": "GPL-2.0",
 	"authors": [
 		{
-			"name": "Ismayil Khayredinov",
-			"email": "info@hypejunction.com"
+			"name": "Ismayil Khayredinov"
 		}
 	],
 	"require": {

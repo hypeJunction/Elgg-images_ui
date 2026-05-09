@@ -1,18 +1,27 @@
-Image UI for Elgg
-=================
-![Elgg 1.11](https://img.shields.io/badge/Elgg-1.11.x-orange.svg?style=flat-square)
-![Elgg 1.12](https://img.shields.io/badge/Elgg-1.12.x-orange.svg?style=flat-square)
-![Elgg 2.0](https://img.shields.io/badge/Elgg-2.0.x-orange.svg?style=flat-square)
+# images_ui
+
+![Elgg 5.0](https://img.shields.io/badge/Elgg-5.0-orange.svg?style=flat-square)
+
+Standardized UI components for listing, filtering, and displaying image files in Elgg.
 
 ## Features
 
- * Standadized UI for listing, displaying and cropping image files
+- Standardized UI for listing, displaying and cropping image files
+- Filterable image feed with container-aware upload form
+- Hooks for customizing subtypes, list options, and available containers
 
-![Feed](https://raw.github.com/hypeJunction/Elgg-images_ui/master/screenshots/feed.png "Image feed")
-![Edit](https://raw.github.com/hypeJunction/Elgg-images_ui/master/screenshots/edit.png "Image editing interface")
+## Installation
 
-## Hooks
+**Via Composer (recommended):**
 
- * `'get_subtypes','images'` - filters object subtypes that may contain image files
- * `'list_options', 'lists/images/all'` - filters options passed to `elgg_list_entities()`
- * `'containers', 'images'` - filters available containers (e.g. user's albums) to be displayed as an option in the upload form
+```bash
+composer require hypejunction/images_ui
+```
+
+**Manual:**
+
+Download the zip, extract into your Elgg `mod/` directory, and activate in the admin panel.
+
+## License
+
+GPL-2.0
