@@ -1,6 +1,6 @@
 {
 	"name": "hypejunction/images_ui",
-	"version": "2.0.0",
+	"version": "7.0.0",
 	"type": "elgg-plugin",
 	"description": "Standardized UI components for listing, filtering, and displaying image files in Elgg",
 	"keywords": [
