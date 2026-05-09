@@ -63,26 +63,6 @@ function images_ui_setup_entity_menu($hook, $type, $return, $params) {
 }
 
 /**
- * Update event handler for image entities
- */
-function images_update_event_handler($event, $type, $entity) {
-	if (!images()->isImage($entity)) {
-		return;
-	}
-	if ($entity->icon_owner_guid && $entity->icon_owner_guid != $entity->owner_guid) {
-		images()->clearThumbs($entity);
-	}
-	$mtime = filemtime($entity->getFilenameOnFilestore());
-	if (!$entity->icontime || $entity->icontime != $mtime) {
-		if (images()->createThumbs($entity)) {
-			$entity->icontime = $mtime;
-		} else {
-			return false;
-		}
-	}
-}
-
-/**
  * Delete event handler for image entities
  */
 function images_delete_event_handler($event, $type, $entity) {
