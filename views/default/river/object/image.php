@@ -9,30 +9,30 @@ if (!$object || !$subject) {
 	return;
 }
 
-$subject_link = elgg_view('output/url', array(
+$subject_link = elgg_view('output/url', [
 	'href' => $subject->getURL(),
 	'text' => $subject->getDisplayName(),
 	'class' => 'elgg-river-subject',
-));
+]);
 
-$object_link = elgg_view('output/url', array(
+$object_link = elgg_view('output/url', [
 	'href' => $object->getURL(),
 	'text' => $object->getDisplayName(),
 	'class' => 'elgg-river-object',
-));
+]);
 
 $action = $item->action_type;
 $key = "river:$action:object:file:image";
-$summary = elgg_echo($key, array($subject_link, $object_link));
+$summary = elgg_echo($key, [$subject_link, $object_link]);
 
 echo elgg_view('river/elements/layout', [
 	'item' => $item,
 	'summary' => $summary,
-	'attachments' => elgg_view('lists/images/item', array(
+	'attachments' => elgg_view('lists/images/item', [
 		'full_view' => false,
 		'show_header' => false,
 		'show_menu' => false,
 		'size' => 'medium',
 		'entity' => $object,
-	)),
+	]),
 ]);

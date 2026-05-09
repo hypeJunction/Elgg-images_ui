@@ -13,10 +13,10 @@ if (!images()->isImage($entity)) {
 	echo elgg_view('input/cropper', [
 		'src' => elgg_get_download_url($entity),
 		'name' => 'crop_coords',
-		'x1' => $entity->x1,
-		'y1' => $entity->y1,
-		'x2' => $entity->x2,
-		'y2' => $entity->y2,
+		'x1' => elgg_extract('x1', $entity->getIconCoordinates(), 0),
+		'y1' => elgg_extract('y1', $entity->getIconCoordinates(), 0),
+		'x2' => elgg_extract('x2', $entity->getIconCoordinates(), 0),
+		'y2' => elgg_extract('y2', $entity->getIconCoordinates(), 0),
 	]);
 	?>
 </div>

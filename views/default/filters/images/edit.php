@@ -16,7 +16,7 @@ foreach ($tabs as $tab) {
 	elgg_register_menu_item('filter', [
 		'name' => $tab,
 		'text' => elgg_echo("images:edit:$tab"),
-		'href' => elgg_http_add_url_query_elements(current_page_url(), ['tab' => $tab]),
+		'href' => elgg_http_add_url_query_elements(elgg_get_current_url(), ['tab' => $tab]),
 		'selected' => $tab == $filter_context,
 	]);
 }

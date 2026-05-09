@@ -3,7 +3,7 @@
 $params = new stdClass();
 
 $input_keys = array_keys((array) elgg_get_config('input'));
-$request_keys = array_keys((array) $_REQUEST);
+$request_keys = array_unique(array_merge(array_keys($_GET), array_keys($_POST)));
 $keys = array_unique(array_merge($input_keys, $request_keys));
 foreach ($keys as $key) {
 	if ($key) {
@@ -13,13 +13,11 @@ foreach ($keys as $key) {
 
 $entity = get_entity($params->guid);
 if (!images()->isImage($entity)) {
-	register_error(elgg_echo('images:error:not_found'));
-	forward(REFERRER);
+	return elgg_error_response(elgg_echo('images:error:not_found'));
 }
 
 if (!$entity->canEdit()) {
-	register_error(elgg_echo('images:error:permission_denied'));
-	forward(REFERRER);
+	return elgg_error_response(elgg_echo('images:error:permission_denied'));
 }
 
 foreach (['x1', 'y1', 'x2', 'y2'] as $coord) {
@@ -31,9 +29,7 @@ foreach (['x1', 'y1', 'x2', 'y2'] as $coord) {
 touch($entity->getFilenameOnFilestore());
 
 if ($entity->save()) {
-	system_message(elgg_echo('images:thumbs:success'));
-} else {
-	register_error(elgg_echo('images:thumbs:error'));
+	return elgg_ok_response('', elgg_echo('images:thumbs:success'));
 }
 
-forward(REFERRER);
+return elgg_error_response(elgg_echo('images:thumbs:error'));

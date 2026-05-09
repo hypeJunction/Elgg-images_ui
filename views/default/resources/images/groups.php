@@ -5,7 +5,7 @@ elgg_push_context('images/groups');
 $username = elgg_extract('username', $vars);
 $user = get_user_by_username($username);
 if (!$user) {
-	forward('', '403');
+	throw new \Elgg\Exceptions\Http\EntityPermissionsException();
 }
 
 elgg_set_page_owner_guid($user->guid);
@@ -32,7 +32,7 @@ if ($user->canWriteToContainer(0, 'object', 'file')) {
 
 $content = elgg_view('lists/images/all', [
 	'filter' => 'groups',
-		]);
+]);
 
 if (elgg_is_xhr()) {
 	echo $content;

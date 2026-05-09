@@ -19,14 +19,14 @@ $img = elgg_view('output/img', [
 	'alt' => $file->getDisplayName(),
 	'src' => $file->getIconURL('master'),
 	'class' => 'elgg-photo',
-		]);
+]);
 
 $link = elgg_view('output/url', [
 	'text' => $img,
 	'href' => elgg_get_download_url($file, true),
 	'class' => 'elgg-lightbox-photo',
-		]);
+]);
 
 echo elgg_format_element('div', [
 	'class' => 'file-photo',
-		], $link);
+], $link);

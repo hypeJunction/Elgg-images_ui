@@ -63,6 +63,7 @@ if ($show_header) {
 		]);
 		$author_text .= ' '  . elgg_echo('images:container:byline', [$container_link]);
 	}
+
 	$date = elgg_view_friendly_time($entity->time_created);
 
 	$subtitle = "$author_text $date";
