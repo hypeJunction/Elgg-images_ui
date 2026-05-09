@@ -63,22 +63,6 @@ function images_ui_setup_entity_menu($hook, $type, $return, $params) {
 }
 
 /**
- * Icon URL handler for image entities
- */
-function images_entity_icon_url($hook, $type, $return, $params) {
-	$size = elgg_extract('size', $params, 'medium');
-	$entity = elgg_extract('entity', $params);
-	if (!images()->isImage($entity)) {
-		return;
-	}
-	$thumb = images()->getThumb($entity, $size);
-	if (!$thumb) {
-		return;
-	}
-	return elgg_get_inline_url($thumb, true);
-}
-
-/**
  * Update event handler for image entities
  */
 function images_update_event_handler($event, $type, $entity) {
