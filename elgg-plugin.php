@@ -4,6 +4,7 @@ return [
 	'bootstrap' => \hypeJunction\ImagesUi\Bootstrap::class,
 
 	'plugin' => [
+		'version' => '2.0.0',
 		'dependencies' => [
 			'images' => [
 				'position' => 'after',

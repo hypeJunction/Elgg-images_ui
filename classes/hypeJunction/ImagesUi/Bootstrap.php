@@ -2,26 +2,13 @@
 
 namespace hypeJunction\ImagesUi;
 
+use Elgg\DefaultPluginBootstrap;
 use Elgg\Includer;
-use Elgg\PluginBootstrap;
 
 /**
  * Plugin bootstrap for images_ui.
  */
-class Bootstrap extends PluginBootstrap {
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function load() {
-		Includer::requireFileOnce($this->plugin->getPath() . '/autoloader.php');
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function boot() {
-	}
+class Bootstrap extends DefaultPluginBootstrap {
 
 	/**
 	 * {@inheritdoc}
@@ -37,37 +24,5 @@ class Bootstrap extends PluginBootstrap {
 
 		elgg_register_event_handler('entity:url', 'object', 'images_ui_entity_url');
 		elgg_register_event_handler('register', 'menu:entity', 'images_ui_setup_entity_menu');
-
-		elgg_extend_view('css/elgg', 'images_ui.css');
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function ready() {
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function shutdown() {
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function activate() {
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function deactivate() {
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function upgrade() {
 	}
 }

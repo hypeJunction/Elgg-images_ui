@@ -23,10 +23,7 @@ if (!$entity->canEdit()) {
 $cropped = images()->crop($entity, $params->crop_coords['x1'], $params->crop_coords['y1'], $params->crop_coords['x2'], $params->crop_coords['y2']);
 if ($cropped) {
 	// reset cropping coordinates as they no longer represent an area on the original image
-	unset($entity->x1);
-	unset($entity->y1);
-	unset($entity->x2);
-	unset($entity->y2);
+	$entity->saveIconCoordinates([]);
 	return elgg_ok_response('', elgg_echo('images:crop:success'));
 }
 
