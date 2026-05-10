@@ -16,3 +16,9 @@ Image UI for Elgg
  * `'get_subtypes','images'` - filters object subtypes that may contain image files
  * `'list_options', 'lists/images/all'` - filters options passed to `elgg_list_entities()`
  * `'containers', 'images'` - filters available containers (e.g. user's albums) to be displayed as an option in the upload form
+
+## Compatibility
+
+| Plugin version | Elgg version |
+|---|---|
+| current | 7.x |
