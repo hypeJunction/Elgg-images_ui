@@ -1,39 +1,41 @@
 {
-	"name": "hypejunction/images_ui",
-	"version": "7.0.0",
-	"type": "elgg-plugin",
-	"description": "Standardized UI components for listing, filtering, and displaying image files in Elgg",
-	"keywords": [
-		"elgg",
-		"plugin",
-		"image",
-		"UI"
-	],
-	"license": "GPL-2.0",
-	"authors": [
-		{
-			"name": "Ismayil Khayredinov"
-		}
-	],
-	"require": {
-		"php": ">=8.3",
-		"ext-intl": "*",
-		"elgg/elgg": "~7.0.0",
-		"composer/installers": "^2.0",
-		"hypejunction/images": "*"
-	},
-	"suggest": {
-		"hypejunction/actions_delete": "~1.0",
-		"hypejunction/cropper": "~1.0"
-	},
-	"config": {
-		"allow-plugins": {
-			"composer/installers": true
-		}
-	},
-	"extra": {
-		"elgg-plugin": {
-			"id": "images_ui"
-		}
-	}
+    "name": "hypejunction/images_ui",
+    "version": "7.0.0",
+    "type": "elgg-plugin",
+    "description": "Standardized UI components for listing, filtering, and displaying image files in Elgg",
+    "keywords": [
+        "elgg",
+        "plugin",
+        "image",
+        "UI"
+    ],
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Ismayil Khayredinov",
+            "email": "ismayil.khayredinov@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.3",
+        "ext-intl": "*",
+        "elgg/elgg": "~7.0.0",
+        "composer/installers": "^2.0",
+        "hypejunction/images": "*"
+    },
+    "suggest": {
+        "hypejunction/actions_delete": "~1.0",
+        "hypejunction/cropper": "~1.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    },
+    "extra": {
+        "elgg-plugin": {
+            "id": "images_ui"
+        }
+    },
+    "homepage": "https://github.com/hypeJunction/Elgg-images_ui"
 }
