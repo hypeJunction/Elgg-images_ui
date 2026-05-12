@@ -1,6 +1,6 @@
 Image UI for Elgg
 =================
-![Elgg 7.x](https://img.shields.io/badge/Elgg-7.x-orange.svg?style=flat-square)
+![Elgg 3.x](https://img.shields.io/badge/Elgg-3.x-orange.svg?style=flat-square)
 
 ## Features
 
