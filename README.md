@@ -1,5 +1,7 @@
 # images_ui
 
+![Elgg 6.x](https://img.shields.io/badge/Elgg-6.x-orange.svg?style=flat-square)
+
 ![Elgg 5.0](https://img.shields.io/badge/Elgg-5.0-orange.svg?style=flat-square)
 
 Standardized UI components for listing, filtering, and displaying image files in Elgg.
