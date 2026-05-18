@@ -34,5 +34,10 @@
         "elgg-plugin": {
             "id": "images_ui"
         }
+    },
+    "autoload": {
+        "files": [
+            "lib/functions.php"
+        ]
     }
 }
