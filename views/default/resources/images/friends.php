@@ -3,7 +3,7 @@
 elgg_push_context('images/frieds');
 
 $username = elgg_extract('username', $vars);
-$user = get_user_by_username($username);
+$user = elgg_get_user_by_username($username);
 if (!$user) {
 	throw new \Elgg\Exceptions\Http\EntityPermissionsException();
 }
