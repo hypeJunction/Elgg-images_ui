@@ -20,11 +20,11 @@ function images_ui_get_subtypes(array $params = []) {
  * @param array  $params Hook params
  * @return string|void
  */
-function images_ui_entity_url(\Elgg\Hook $hook) {
+function images_ui_entity_url($hook, $type = null, $return = null, $params = null) {
 	if ($hook instanceof \Elgg\Hook) {
-		$hook->getParams() = $hook->getParams();
+		$params = $hook->getParams();
 	}
-	$entity = elgg_extract('entity', (array) $hook->getParams());
+	$entity = elgg_extract('entity', (array) $params);
 	if (!function_exists('images') || !images()->isImage($entity)) {
 		return;
 	}
@@ -40,14 +40,12 @@ function images_ui_entity_url(\Elgg\Hook $hook) {
  * @param array          $params Hook params
  * @return ElggMenuItem[]|void
  */
-function images_ui_setup_entity_menu(\Elgg\Hook $hook) {
-		$return = $hook->getValue();
-
+function images_ui_setup_entity_menu($hook, $type = null, $return = null, $params = null) {
 	if ($hook instanceof \Elgg\Hook) {
-		$hook->getParams() = $hook->getParams();
+		$params = $hook->getParams();
 		$return = $hook->getValue();
 	}
-	$entity = elgg_extract('entity', (array) $hook->getParams());
+	$entity = elgg_extract('entity', (array) $params);
 	if (!function_exists('images') || !images()->isImage($entity)) {
 		return;
 	}
