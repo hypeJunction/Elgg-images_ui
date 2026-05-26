@@ -18,17 +18,17 @@ class ActionsTest extends IntegrationTestCase {
     }
 
     public function testUploadActionRegistered(): void {
-        $actions = _elgg_services()->actions->getAllActions();
+        $actions = \_elgg_services()->actions->getAllActions();
         $this->assertArrayHasKey('images/upload', $actions);
     }
 
     public function testCropActionRegistered(): void {
-        $actions = _elgg_services()->actions->getAllActions();
+        $actions = \_elgg_services()->actions->getAllActions();
         $this->assertArrayHasKey('images/crop', $actions);
     }
 
     public function testThumbsActionRegistered(): void {
-        $actions = _elgg_services()->actions->getAllActions();
+        $actions = \_elgg_services()->actions->getAllActions();
         $this->assertArrayHasKey('images/thumbs', $actions);
     }
 }

@@ -36,7 +36,7 @@ class BootstrapTest extends IntegrationTestCase {
     }
 
     public function testSiteMenuItemRegistered(): void {
-        $menu = _elgg_services()->menus->getMenu('site', []);
+        $menu = \_elgg_services()->menus->getMenu('site', []);
         $found = false;
         foreach ($menu->getSections() as $section) {
             foreach ($section->getItems() as $item) {

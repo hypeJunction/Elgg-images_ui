@@ -24,31 +24,31 @@ class HooksTest extends IntegrationTestCase {
     }
 
     public function testEntityUrlEventRegistered(): void {
-        $events = _elgg_services()->events->getAllHandlers();
+        $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('entity:url', $events);
         $this->assertArrayHasKey('object', $events['entity:url']);
     }
 
     public function testMenuEntityEventRegistered(): void {
-        $events = _elgg_services()->events->getAllHandlers();
+        $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('register', $events);
         $this->assertArrayHasKey('menu:entity', $events['register']);
     }
 
     public function testEntityIconUrlEventRegistered(): void {
-        $events = _elgg_services()->events->getAllHandlers();
+        $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('entity:icon:url', $events);
         $this->assertArrayHasKey('object', $events['entity:icon:url']);
     }
 
     public function testUpdateEventRegistered(): void {
-        $events = _elgg_services()->events->getAllHandlers();
+        $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('update:after', $events);
         $this->assertArrayHasKey('object', $events['update:after']);
     }
 
     public function testDeleteEventRegistered(): void {
-        $events = _elgg_services()->events->getAllHandlers();
+        $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('delete', $events);
         $this->assertArrayHasKey('object', $events['delete']);
     }
