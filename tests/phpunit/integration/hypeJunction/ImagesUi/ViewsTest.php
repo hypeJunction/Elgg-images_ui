@@ -18,54 +18,54 @@ class ViewsTest extends IntegrationTestCase {
     }
 
     public function testUploadFormViewExists(): void {
-        $this->assertTrue(elgg_view_exists('forms/images/upload'));
+        $this->assertTrue(\elgg_view_exists('forms/images/upload'));
     }
 
     public function testCropFormViewExists(): void {
-        $this->assertTrue(elgg_view_exists('forms/images/crop'));
+        $this->assertTrue(\elgg_view_exists('forms/images/crop'));
     }
 
     public function testThumbsFormViewExists(): void {
-        $this->assertTrue(elgg_view_exists('forms/images/thumbs'));
+        $this->assertTrue(\elgg_view_exists('forms/images/thumbs'));
     }
 
     public function testAllResourceViewExists(): void {
-        $this->assertTrue(elgg_view_exists('resources/images/all'));
+        $this->assertTrue(\elgg_view_exists('resources/images/all'));
     }
 
     public function testViewResourceViewExists(): void {
-        $this->assertTrue(elgg_view_exists('resources/images/view'));
+        $this->assertTrue(\elgg_view_exists('resources/images/view'));
     }
 
     public function testEditResourceViewExists(): void {
-        $this->assertTrue(elgg_view_exists('resources/images/edit'));
+        $this->assertTrue(\elgg_view_exists('resources/images/edit'));
     }
 
     public function testUploadResourceViewExists(): void {
-        $this->assertTrue(elgg_view_exists('resources/images/upload'));
+        $this->assertTrue(\elgg_view_exists('resources/images/upload'));
     }
 
     public function testFriendsResourceViewExists(): void {
-        $this->assertTrue(elgg_view_exists('resources/images/friends'));
+        $this->assertTrue(\elgg_view_exists('resources/images/friends'));
     }
 
     public function testGroupsResourceViewExists(): void {
-        $this->assertTrue(elgg_view_exists('resources/images/groups'));
+        $this->assertTrue(\elgg_view_exists('resources/images/groups'));
     }
 
     public function testImagesListItemViewExists(): void {
-        $this->assertTrue(elgg_view_exists('lists/images/item'));
+        $this->assertTrue(\elgg_view_exists('lists/images/item'));
     }
 
     public function testAllFilterViewExists(): void {
-        $this->assertTrue(elgg_view_exists('filters/images/all'));
+        $this->assertTrue(\elgg_view_exists('filters/images/all'));
     }
 
     public function testRiverViewExists(): void {
-        $this->assertTrue(elgg_view_exists('river/object/image'));
+        $this->assertTrue(\elgg_view_exists('river/object/image'));
     }
 
     public function testProfileViewExists(): void {
-        $this->assertTrue(elgg_view_exists('profile/object/image'));
+        $this->assertTrue(\elgg_view_exists('profile/object/image'));
     }
 }

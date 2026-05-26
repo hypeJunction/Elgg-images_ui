@@ -23,32 +23,32 @@ class HooksTest extends IntegrationTestCase {
     }
 
     public function testEntityUrlHookRegistered(): void {
-        $hooks = _elgg_services()->hooks->getAllHandlers();
+        $hooks = \_elgg_services()->hooks->getAllHandlers();
         $this->assertArrayHasKey('entity:url', $hooks);
         $this->assertArrayHasKey('object', $hooks['entity:url']);
     }
 
     public function testMenuEntityHookRegistered(): void {
-        $hooks = _elgg_services()->hooks->getAllHandlers();
+        $hooks = \_elgg_services()->hooks->getAllHandlers();
         $this->assertArrayHasKey('register', $hooks);
         $this->assertArrayHasKey('menu:entity', $hooks['register']);
     }
 
     public function testEntityIconUrlHookRegistered(): void {
         // images dep registers entity:icon:url as an event (not a legacy hook) in its 4.x Bootstrap
-        $events = _elgg_services()->events->getAllHandlers();
+        $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('entity:icon:url', $events);
         $this->assertArrayHasKey('object', $events['entity:icon:url']);
     }
 
     public function testUpdateEventRegistered(): void {
-        $events = _elgg_services()->events->getAllHandlers();
+        $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('update:after', $events);
         $this->assertArrayHasKey('object', $events['update:after']);
     }
 
     public function testDeleteEventRegistered(): void {
-        $events = _elgg_services()->events->getAllHandlers();
+        $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('delete', $events);
         $this->assertArrayHasKey('object', $events['delete']);
     }

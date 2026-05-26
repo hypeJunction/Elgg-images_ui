@@ -27,16 +27,16 @@ class Bootstrap extends PluginBootstrap {
 	public function init() {
 		Includer::requireFileOnce($this->plugin->getPath() . '/lib/functions.php');
 
-		elgg_register_menu_item('site', [
+		\elgg_register_menu_item('site', [
 			'name' => 'images',
-			'text' => elgg_echo('images'),
+			'text' => \elgg_echo('images'),
 			'href' => '/images/all',
 		]);
 
-		elgg_register_plugin_hook_handler('entity:url', 'object', 'images_ui_entity_url');
-		elgg_register_plugin_hook_handler('register', 'menu:entity', 'images_ui_setup_entity_menu');
+		\elgg_register_plugin_hook_handler('entity:url', 'object', 'images_ui_entity_url');
+		\elgg_register_plugin_hook_handler('register', 'menu:entity', 'images_ui_setup_entity_menu');
 
-		elgg_extend_view('css/elgg', 'images_ui.css');
+		\elgg_extend_view('css/elgg', 'images_ui.css');
 	}
 
 	/**
