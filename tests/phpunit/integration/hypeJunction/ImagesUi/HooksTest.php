@@ -18,22 +18,34 @@ class HooksTest extends IntegrationTestCase {
 
     public function down() {}
 
+    /**
+     * @return string
+     */
     public function getPluginID(): string {
         return 'images_ui';
     }
 
+    /**
+     * @return void
+     */
     public function testEntityUrlHookRegistered(): void {
         $hooks = \_elgg_services()->hooks->getAllHandlers();
         $this->assertArrayHasKey('entity:url', $hooks);
         $this->assertArrayHasKey('object', $hooks['entity:url']);
     }
 
+    /**
+     * @return void
+     */
     public function testMenuEntityHookRegistered(): void {
         $hooks = \_elgg_services()->hooks->getAllHandlers();
         $this->assertArrayHasKey('register', $hooks);
         $this->assertArrayHasKey('menu:entity', $hooks['register']);
     }
 
+    /**
+     * @return void
+     */
     public function testEntityIconUrlHookRegistered(): void {
         // images dep registers entity:icon:url as an event (not a legacy hook) in its 4.x Bootstrap
         $events = \_elgg_services()->events->getAllHandlers();
@@ -41,18 +53,27 @@ class HooksTest extends IntegrationTestCase {
         $this->assertArrayHasKey('object', $events['entity:icon:url']);
     }
 
+    /**
+     * @return void
+     */
     public function testUpdateEventRegistered(): void {
         $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('update:after', $events);
         $this->assertArrayHasKey('object', $events['update:after']);
     }
 
+    /**
+     * @return void
+     */
     public function testDeleteEventRegistered(): void {
         $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('delete', $events);
         $this->assertArrayHasKey('object', $events['delete']);
     }
 
+    /**
+     * @return void
+     */
     public function testHelperFunctionsExist(): void {
         $this->assertTrue(function_exists('images_ui_entity_url'));
         $this->assertTrue(function_exists('images_ui_setup_entity_menu'));
@@ -61,6 +82,9 @@ class HooksTest extends IntegrationTestCase {
         // are now anonymous closures in hypeJunction\Images\Bootstrap — no global function names.
     }
 
+    /**
+     * @return void
+     */
     public function testEntityUrlHookSkipsNonImage(): void {
         if (!function_exists('images')) {
             $this->markTestSkipped('images() helper not available; images plugin not loaded');
@@ -72,6 +96,9 @@ class HooksTest extends IntegrationTestCase {
         $this->assertNull($result);
     }
 
+    /**
+     * @return void
+     */
     public function testEntityMenuHookSkipsNonImage(): void {
         if (!function_exists('images')) {
             $this->markTestSkipped('images() helper not available');

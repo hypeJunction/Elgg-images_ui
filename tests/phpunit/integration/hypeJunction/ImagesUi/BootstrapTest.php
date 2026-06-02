@@ -13,18 +13,30 @@ class BootstrapTest extends IntegrationTestCase {
 
     public function down() {}
 
+    /**
+     * @return string
+     */
     public function getPluginID(): string {
         return 'images_ui';
     }
 
+    /**
+     * @return void
+     */
     public function testBootstrapClassExists(): void {
         $this->assertTrue(class_exists(Bootstrap::class));
     }
 
+    /**
+     * @return void
+     */
     public function testBootstrapExtendsPluginBootstrap(): void {
         $this->assertTrue(is_subclass_of(Bootstrap::class, \Elgg\PluginBootstrap::class));
     }
 
+    /**
+     * @return void
+     */
     public function testBootstrapImplementsRequiredMethods(): void {
         $required = ['load', 'boot', 'init', 'ready', 'shutdown', 'activate', 'deactivate', 'upgrade'];
         foreach ($required as $method) {
@@ -35,6 +47,9 @@ class BootstrapTest extends IntegrationTestCase {
         }
     }
 
+    /**
+     * @return void
+     */
     public function testSiteMenuItemRegistered(): void {
         $menu = \_elgg_services()->menus->getMenu('site', []);
         $found = false;
