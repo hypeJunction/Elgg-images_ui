@@ -12,8 +12,8 @@ if (!$full || !$file instanceof ElggFile) {
 	return;
 }
 
-elgg_load_js('lightbox');
-elgg_load_css('lightbox');
+elgg_require_js('lightbox');
+elgg_require_css('lightbox');
 
 $img = elgg_view('output/img', [
 	'alt' => $file->getDisplayName(),

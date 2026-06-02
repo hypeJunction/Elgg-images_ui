@@ -44,7 +44,7 @@ if (!$entity) {
 
 $entity->title = $params->title;
 $entity->description = $params->description;
-$entity->tags = string_to_tag_array((string) $params->tags);
+$entity->tags = elgg_string_to_array((string) $params->tags);
 $entity->access_id = isset($params->access_id) ? $params->access_id : (elgg_get_config('default_access') ?? ACCESS_PUBLIC);
 if ($entity->save()) {
 	if (!$params->guid) {

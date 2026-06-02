@@ -19,46 +19,70 @@ class HooksTest extends IntegrationTestCase {
 
     public function down() {}
 
+    /**
+     * @return string
+     */
     public function getPluginID(): string {
         return 'images_ui';
     }
 
+    /**
+     * @return void
+     */
     public function testEntityUrlEventRegistered(): void {
         $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('entity:url', $events);
         $this->assertArrayHasKey('object', $events['entity:url']);
     }
 
+    /**
+     * @return void
+     */
     public function testMenuEntityEventRegistered(): void {
         $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('register', $events);
         $this->assertArrayHasKey('menu:entity', $events['register']);
     }
 
+    /**
+     * @return void
+     */
     public function testEntityIconUrlEventRegistered(): void {
         $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('entity:icon:url', $events);
         $this->assertArrayHasKey('object', $events['entity:icon:url']);
     }
 
+    /**
+     * @return void
+     */
     public function testUpdateEventRegistered(): void {
         $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('update:after', $events);
         $this->assertArrayHasKey('object', $events['update:after']);
     }
 
+    /**
+     * @return void
+     */
     public function testDeleteEventRegistered(): void {
         $events = \_elgg_services()->events->getAllHandlers();
         $this->assertArrayHasKey('delete', $events);
         $this->assertArrayHasKey('object', $events['delete']);
     }
 
+    /**
+     * @return void
+     */
     public function testHelperFunctionsExist(): void {
         $this->assertTrue(function_exists('images_ui_entity_url'));
         $this->assertTrue(function_exists('images_ui_setup_entity_menu'));
         $this->assertTrue(function_exists('images_ui_get_subtypes'));
     }
 
+    /**
+     * @return void
+     */
     public function testEntityUrlEventSkipsNonImage(): void {
         if (!function_exists('images')) {
             $this->markTestSkipped('images() helper not available; images plugin not loaded');
@@ -70,6 +94,9 @@ class HooksTest extends IntegrationTestCase {
         $this->assertNull($result);
     }
 
+    /**
+     * @return void
+     */
     public function testEntityMenuEventSkipsNonImage(): void {
         if (!function_exists('images')) {
             $this->markTestSkipped('images() helper not available');

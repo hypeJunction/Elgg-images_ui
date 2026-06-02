@@ -20,10 +20,16 @@ class ImageEntityTest extends IntegrationTestCase {
         \_elgg_services()->session_manager->removeLoggedInUser();
     }
 
+    /**
+     * @return string
+     */
     public function getPluginID(): string {
         return 'images_ui';
     }
 
+    /**
+     * @return void
+     */
     public function testFileEntityCanBeCreatedWithImageSimpletype(): void {
         $user = $this->createUser();
         \_elgg_services()->session_manager->setLoggedInUser($user);
@@ -44,6 +50,9 @@ class ImageEntityTest extends IntegrationTestCase {
         $entity->delete();
     }
 
+    /**
+     * @return void
+     */
     public function testOwnerCanEditImage(): void {
         $owner = $this->createUser();
         \_elgg_services()->session_manager->setLoggedInUser($owner);
@@ -60,6 +69,9 @@ class ImageEntityTest extends IntegrationTestCase {
         $entity->delete();
     }
 
+    /**
+     * @return void
+     */
     public function testNonOwnerCannotEditImage(): void {
         $owner = $this->createUser();
         $other = $this->createUser();
@@ -77,6 +89,9 @@ class ImageEntityTest extends IntegrationTestCase {
         $entity->delete();
     }
 
+    /**
+     * @return void
+     */
     public function testImageTagsPersist(): void {
         $user = $this->createUser();
         \_elgg_services()->session_manager->setLoggedInUser($user);
@@ -98,6 +113,9 @@ class ImageEntityTest extends IntegrationTestCase {
         $entity->delete();
     }
 
+    /**
+     * @return void
+     */
     public function testCropCoordinatesPersistAsMetadata(): void {
         $user = $this->createUser();
         \_elgg_services()->session_manager->setLoggedInUser($user);
