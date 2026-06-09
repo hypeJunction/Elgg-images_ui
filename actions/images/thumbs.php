@@ -11,7 +11,7 @@ foreach ($keys as $key) {
 	}
 }
 
-$entity = get_entity($params->guid);
+$entity = $params->guid ? get_entity((int) $params->guid) : null;
 if (!images()->isImage($entity)) {
 	return elgg_error_response(elgg_echo('images:error:not_found'));
 }

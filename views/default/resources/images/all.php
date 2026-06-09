@@ -17,7 +17,7 @@ if ($target) {
 		}
 	} else {
 		elgg_push_context('images/container');
-		elgg_entity_gatekeeper();
+		elgg_entity_gatekeeper($target->guid);
 		$owner_guid = ELGG_ENTITIES_ANY_VALUE;
 		$title = elgg_echo('images:in', [$target->getDisplayName()]);
 		elgg_push_breadcrumb($title);
