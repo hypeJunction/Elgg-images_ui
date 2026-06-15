@@ -36,7 +36,7 @@
 
 ### Bug Fixes
 
-* `dbprefix` subquery access replaced with `elgg()->db->getTablePrefix()` (security)
+* `dbprefix` subquery access uses `elgg_get_config('dbprefix')` (`Database::getTablePrefix()` was removed in Elgg 3.0)
 * `ElggFile::detectMimeType()` removed in Elgg 4.x — `ImageService::isImage()` updated to use `mime_content_type()` when file exists on disk
 
 <a name="1.0.2"></a>
