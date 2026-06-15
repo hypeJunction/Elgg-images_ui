@@ -95,7 +95,7 @@ images_ui extends `css/elgg` with the `images_ui.css` view, injected via
 - Updated composer.json: `php >=7.4`, `elgg/elgg ^4.0`, `composer/installers ^2.0`
 - Added `hypejunction/images` as a required Composer dep
 - `elgg_register_css()` / `elgg_load_css()` removed in 4.x → replaced with `elgg_extend_view('css/elgg', 'images_ui.css')`
-- `dbprefix` subquery access in `lists/images/all.php` updated to use `elgg()->db->getTablePrefix()`
+- `dbprefix` subquery access in `lists/images/all.php` uses `elgg_get_config('dbprefix')` (`Database::getTablePrefix()` was removed in Elgg 3.0)
 - Bug fix in `images` dep plugin: `ElggFile::detectMimeType()` was removed in Elgg 4.x; `ImageService::isImage()` updated to fall back to `mime_content_type()` only when the file exists on disk
 - Hook callback signatures: guarded for both 4.x 1-arg `\Elgg\Hook` and legacy 4-arg style
 
