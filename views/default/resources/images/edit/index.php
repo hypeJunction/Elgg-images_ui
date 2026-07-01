@@ -1,7 +1,7 @@
 <?php
 
 $guid = elgg_extract('guid', $vars);
-$entity = get_entity($guid);
+$entity = $guid ? get_entity((int) $guid) : null;
 if (!images()->isImage($entity)) {
 	throw new \Elgg\Exceptions\Http\EntityNotFoundException();
 }
@@ -12,7 +12,6 @@ if (!$entity->canEdit()) {
 
 $container = $entity->getContainerEntity();
 elgg_set_page_owner_guid($container->guid);
-elgg_entity_gatekeeper();
 elgg_push_breadcrumb(elgg_echo('images'), '/images/all');
 if ($container) {
 	elgg_push_breadcrumb($container->getDisplayName(), "/images/all/{$entity->container_guid}");

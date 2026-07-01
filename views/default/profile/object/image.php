@@ -36,7 +36,7 @@ $body = elgg_view('output/longtext', [
 	'value' => $entity->description
 ]);
 
-$mimetype = $entity->mimetype ?: $entity->detectMimeType();
+$mimetype = $entity->mimetype ?: $entity->getMimeType();
 list($basetype, $subtype) = explode('/', $mimetype);
 
 $extra = '';
