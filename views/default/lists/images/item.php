@@ -32,7 +32,7 @@ if (elgg_in_context('gallery')) {
 	}
 
 	$description = elgg_view('output/longtext', [
-		'value' => elgg_get_excerpt($entity->description, $length),
+		'value' => elgg_get_excerpt((string) $entity->description, $length),
 		'class' => 'man',
 	]);
 
